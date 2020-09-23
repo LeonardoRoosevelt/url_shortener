@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const generateUrl = require('./generate_url')
 
+require('./config/mongoose')
 const app = express()
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: 'hbs' }))
