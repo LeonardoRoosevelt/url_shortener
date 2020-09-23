@@ -8,6 +8,8 @@ const Url = require('./models/url')
 require('./config/mongoose')
 const app = express()
 
+app.use(express.static('public'))
+
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: 'hbs' }))
 app.set('view engine', 'hbs')
 
@@ -19,8 +21,24 @@ app.get('/', (req, res) => {
 
 app.post('/urlShortener', (req, res) => {
   const url = req.body.url
-  const randomUrl = generateUrl()
-  return Url.create({ url, url_shortener: randomUrl })
+  let randomUrl = ''
+  let urlAlready = false
+  Url.find()
+    .lean()
+    .then(urlShorteners => {
+      for (const urlShortener of urlShorteners) {
+        if (url === urlShortener.url) {
+          randomUrl = urlShortener.url_shortener
+          urlAlready = true
+          return randomUrl, urlAlready
+        }
+      }
+      if (urlAlready === false) {
+        randomUrl = generateUrl()
+        Url.create({ url, url_shortener: randomUrl })
+        return randomUrl
+      }
+    })
     .then(() => res.render('generate', { randomUrl }))
     .catch(error => console.log(error))
 })
