@@ -1,3 +1,10 @@
-<a href="http://localhost:3000/{{randomUrl}}">
-  <h1> <span>http://localhost:3000/</span>{{randomUrl}}</h1>
-</a>
+<div class="column">
+  <div class="shortUrl d-flex justify-content-center">
+    <a href="http://localhost:3000/{{randomUrl}}">
+      <h1 id="shortenerUrl"> <span>http://localhost:3000/</span>{{randomUrl}}</h1>
+    </a>
+  </div>
+  <div class="copyBtn d-flex justify-content-center">
+    <button class="btn btn-primary m-3" onclick="copySystem()">Copy</button>
+  </div>
+</div>
