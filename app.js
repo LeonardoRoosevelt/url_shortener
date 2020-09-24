@@ -1,5 +1,5 @@
 const express = require('express')
-const port = 3000
+const PORT = process.env.PORT || 3000
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const generateUrl = require('./generate_url')
@@ -75,6 +75,6 @@ app.get('/:randomUrl', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.listen(port, () => {
-  console.log(`listening on http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`listening on http://localhost:${PORT}`)
 })

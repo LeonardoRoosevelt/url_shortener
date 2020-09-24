@@ -7,7 +7,7 @@ function sample(array) {
 function generateUrl() {
   const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'
   const upperCaseLetters = lowerCaseLetters.toUpperCase()
-  const numbers = '1234'
+  const numbers = '1234567890'
 
   let collection = []
   collection = collection.concat(lowerCaseLetters.split(''))
@@ -16,7 +16,7 @@ function generateUrl() {
 
   // start generating url
   let randomUrl = ''
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 5; i++) {
     randomUrl += sample(collection)
   }
 
